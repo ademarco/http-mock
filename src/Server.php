@@ -23,8 +23,9 @@ class Server extends Process
         $package_root = __DIR__ . '/../';
         parent::__construct(
             sprintf(
-                'exec php -dalways_populate_raw_post_data=-1 -derror_log= -S %s -t public/ %spublic/index.php',
+                'exec php -dalways_populate_raw_post_data=-1 -derror_log= -S %s -t %spublic/ %spublic/index.php',
                 $this->getConnectionString(),
+                $package_root,
                 $package_root
             ),
             $package_root
