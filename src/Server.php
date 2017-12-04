@@ -20,11 +20,12 @@ class Server extends Process
     {
         $this->port = $port;
         $this->host = $host;
-        $package_root = __DIR__ . '/../public';
+        $package_root = __DIR__ . '/../';
         parent::__construct(
             sprintf(
-                'exec php -dalways_populate_raw_post_data=-1 -derror_log= -S %s',
-                $this->getConnectionString()
+                'exec php -dalways_populate_raw_post_data=-1 -derror_log=server.log -S %s -t public/ %spublic/index.php',
+                $this->getConnectionString(),
+                $package_root
             ),
             $package_root
         );
